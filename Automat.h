@@ -4,14 +4,20 @@ class Automat
 {
 private:
     int geldAnzahl;
+    int anzahlGesperrteKarten = 0;
 public:
     Automat(int Anzahl): geldAnzahl(Anzahl) {};
 
     int erlaubteCardNummer = 4444;
 
-    int get_geldAnzahl();
+    void increaseAnzahlKarten();
+    int get_geldAnzahl(){
+        return geldAnzahl;
+    }
     bool checkCard(int);
     void karteAuswerfen();
-    void pinEingabeProcess(int versuche, const Person &person);
+    void pinEingabeProcess(int versuche, Person &person);
+    void betragAuswahl(Person &person);
+    void betragAuszahlen(float, Person &person);
 };
 

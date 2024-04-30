@@ -8,15 +8,26 @@ class Person
 private:
     Card *privateCard; 
     int cartePin;
+    float cash;
 public:
     Person(int);
     ~Person();
 
-    int getCardErlaubteNummer();
-    int get_pin();
-    int get_pin() const;
+    int getCardErlaubteNummer(){
+        return privateCard->cardNumber;
+    }
+
+    int get_pin(){
+        return cartePin;
+    }
+
+    int get_pin() const{
+        return cartePin;
+    }
+    void amountCash();
     void cardEinfuehren();
     void cardEntnehmen();
+    void geldErhalten(float);
 };
 
 #endif

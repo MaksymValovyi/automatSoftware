@@ -1,37 +1,109 @@
 #include "Automat.h"
 using namespace std;
 
-int Automat::get_geldAnzahl(){
-    return geldAnzahl;
+void Automat::increaseAnzahlKarten(){
+    anzahlGesperrteKarten++;
+    cout << endl << "-----------Admin Message-----------" << endl;
+    cout << "Anzahl von gesperrten Karten = " << anzahlGesperrteKarten << endl;
+    cout << "---------End Admin Message---------" << endl << endl;
 }
 
 bool Automat::checkCard(int cardNumber){
     if(erlaubteCardNummer==cardNumber){
+        cout << "----------" << endl;
         cout << "Code Passt" << endl;
+        cout << "----------" << endl;
         return true;
     }else{
+        cout << "----------------" << endl;
         cout << "Code Passt NICHT" << endl;
+        cout << "----------------" << endl;
         return false;
     }
 }
 
 void Automat::karteAuswerfen(){
     cout << "Karte wird ausgewerft" << endl;
+    //Person::cardEntnehmen();
 }
 
-void Automat::pinEingabeProcess(int versuche, const Person &person){
-    cout << endl << "Geben Sie Ihr Pin" << endl;
-    int pin;
-    cin >> pin;
-    while(pin!=person.get_pin() && versuche <3){
-        versuche++;
-
+void Automat::pinEingabeProcess(int versuche, Person &person){
+    cout << endl << "Options: " << endl;
+    cout << "1. Pin eingeben" << endl;
+    cout << "2. Abbruch" << endl;
+    int option;
+    cin >> option;
+    switch (option)
+    {
+    case 1:
+    {
+        cout << endl << "Geben Sie Ihr Pin" << endl;
+        int pin;
+        cin >> pin;
+        while (pin!=person.get_pin() && versuche <2){
+            versuche++;
+            cout << "----------------------" << endl;
+            cout << "Incorrect Pin" << endl;
+            cout << "Versuchen Sie noch mal" << endl;
+            cout << "----------------------" << endl;
+            cin >> pin;
+        }
+        if (pin==person.get_pin()){
+            betragAuswahl(person);
+        }else {
+            cout << "-------------------" << endl;
+            cout << "Karte is eingezogen" << endl;
+            cout << "-------------------" << endl;
+            increaseAnzahlKarten();
+        }
+        break;
     }
-    if (pin == person.get_pin()){
-        cout << "Pin ist correct" << endl;
-    }else if(pin!=person.get_pin() && versuche <=3){
-
-    }else{
-
+    case 2:
+    {
+        karteAuswerfen();
+        person.cardEntnehmen();
+        break;
     }
+    default:
+        karteAuswerfen();
+        person.cardEntnehmen();
+        break;
+    }
+}
+
+void Automat::betragAuswahl(Person &person){
+    cout << endl << "Options: " << endl;
+    cout << "1. Betragauswahl" << endl;
+    cout << "2. Abbruch" << endl;
+    int option;
+    cin >> option;
+    switch (option)
+    {
+        case 1:
+        {
+            cout << "Wahlen Sie Ihre Summe" << endl;
+            float summe;
+            cin >> summe;
+            cout << summe << " Euro wird ausgebucht" << endl << endl;
+            betragAuszahlen(summe, person);
+            break;
+        }
+        case 2:
+        {
+            karteAuswerfen();
+            person.cardEntnehmen();
+            break;
+        }
+        default:
+        {
+            karteAuswerfen();
+            person.cardEntnehmen();
+            break;
+        }
+    }
+}
+
+void Automat::betragAuszahlen(float summe, Person &person){
+    cout << summe << " zahlt Automat Ihnnen" << endl << endl;
+    person.geldErhalten(summe);
 }

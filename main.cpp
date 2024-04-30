@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
     cout << "---------End Admin Message---------" << endl;
 
     while (1==1){
-    cout << "1. Card Einfuehren" << endl;
+    cout  << endl << "1. Card Einfuehren" << endl;
     cout << "2. Ruhe" << endl;
     cout << "3. Exit" << endl;
     cin >> option;
@@ -32,37 +32,39 @@ int main(int argc, char const *argv[])
             case 1:
             {
                 //Card bankCard(random_number());
-                Person person(random_number());
-                cout << "-----------Admin Message-----------" << endl;
-                cout << "Pin code is : " << person.get_pin() << endl;
-                cout << "---------End Admin Message---------" << endl;
+                Person *person = new Person(random_number());
+                cout << endl << "-----------Admin Message-----------" << endl;
+                cout << "Pin code is : " << person->get_pin() << endl;
+                cout << "---------End Admin Message---------" << endl << endl;
                 
 
-                cout << "Karte Einfuehren ? " << endl;
+                cout << endl << "Karte Einfuehren ? " << endl;
                 cout << "1. Ja" << endl;
                 cout << "2. Nein" << endl;
                 cin >> option;
                 switch(option){
                     case 1:
                     {
-                        person.cardEinfuehren();
-                        int result = automat.checkCard(person.getCardErlaubteNummer());
+                        person->cardEinfuehren();
+                        int result = automat.checkCard(person->getCardErlaubteNummer());
                         if(result == true){
                             int versuch=0;
+                            cout << "------------------" << endl;
                             cout << "Pruefung bestanden" << endl;
-                            automat.pinEingabeProcess(versuch, person);
+                            cout << "------------------" << endl;
+                            automat.pinEingabeProcess(versuch, *person);
+
+                            person->amountCash();
                         }else{
                             automat.karteAuswerfen();
-                            person.cardEntnehmen();
+                            person->cardEntnehmen();
                         }
                         break;
-                    }
-                        
+                    }    
                     case 2:
                     {
                         break;
-                    }
-                        
+                    }       
                 }
                 break;
             }

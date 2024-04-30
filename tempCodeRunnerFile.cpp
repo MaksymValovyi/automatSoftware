@@ -1,2 +1,1 @@
-
-                        break;
+automat.pinEingabeProcess(versuch, *person);

@@ -13,10 +13,7 @@ private:
     int pin;
 public:
     Card(int randomPin): pin(randomPin) {};
-    ~Card(){
-        delete this;
-    };
-
+    
     int cardNumber = erlaubteCardNumber;
 
     int get_pin();

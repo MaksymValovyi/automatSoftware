@@ -2,7 +2,6 @@
 #include "Card.h"
 
 Person::Person(int Pin) 
-
 {
     privateCard = new Card(Pin);
     cartePin = privateCard->get_pin();
@@ -10,26 +9,27 @@ Person::Person(int Pin)
 
 Person::~Person(){
     delete privateCard;
-    delete this;
 }
 
-int Person::get_pin(){
-    return cartePin;
-}
-int Person::get_pin() const{
-    return cartePin;
-}
-
-int Person::getCardErlaubteNummer(){
-    return privateCard->cardNumber;
-}
 void Person::cardEinfuehren(){
+    cout << "---------------------" << endl;
     cout << "Karte ist eingefuehrt" << endl;
+    cout << "---------------------" << endl;
 
 }
 
 void Person::cardEntnehmen(){
+    cout << "--------------------" << endl;
     cout << "Karte wird entnommen" << endl;
+    cout << "--------------------" << endl;
+}
+
+void Person::geldErhalten(float summe){
+    cash+=summe;
+}
+
+void Person::amountCash(){
+    cout << "Ich habe " << cash  << " Euro" << endl;    
 }
 
 
