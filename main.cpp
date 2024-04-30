@@ -3,6 +3,7 @@
 
 #include "Automat.cpp"
 #include "Card.cpp"
+#include "Person.cpp"
 
 using namespace std;
 
@@ -30,9 +31,10 @@ int main(int argc, char const *argv[])
         switch(option){
             case 1:
             {
-                Card bankCard(random_number());
+                //Card bankCard(random_number());
+                Person person(random_number());
                 cout << "-----------Admin Message-----------" << endl;
-                cout << "Pin code is : " << bankCard.get_pin() << endl;
+                cout << "Pin code is : " << person.get_pin() << endl;
                 cout << "---------End Admin Message---------" << endl;
                 
 
@@ -43,6 +45,16 @@ int main(int argc, char const *argv[])
                 switch(option){
                     case 1:
                     {
+                        person.cardEinfuehren();
+                        int result = automat.checkCard(person.getCardErlaubteNummer());
+                        if(result == true){
+                            int versuch=0;
+                            cout << "Pruefung bestanden" << endl;
+                            automat.pinEingabeProcess(versuch, person);
+                        }else{
+                            automat.karteAuswerfen();
+                            person.cardEntnehmen();
+                        }
                         break;
                     }
                         
