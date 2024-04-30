@@ -8,6 +8,7 @@ using namespace std;
 
 int Anzahl = 1000;
 int option;
+
 int random_number(){
     srand(time(NULL));
     int randomNumber = rand() % 9000 + 1000;
@@ -21,11 +22,11 @@ int main(int argc, char const *argv[])
     cout << "Geld in Automat: " << automat.get_geldAnzahl() << endl;
     cout << "---------End Admin Message---------" << endl;
 
+    while (1==1){
     cout << "1. Card Einfuehren" << endl;
     cout << "2. Ruhe" << endl;
     cout << "3. Exit" << endl;
     cin >> option;
-    while (1==1){
         switch(option){
             case 1:
             {
@@ -67,7 +68,7 @@ int main(int argc, char const *argv[])
             }
             default :
             {
-                cout << "Incorrect Variable" << endl;
+                cout << endl << "Incorrect Variable" << endl << endl;
                 break;
             }
         }
