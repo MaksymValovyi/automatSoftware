@@ -1,1 +1,1 @@
-automat.pinEingabeProcess(versuch, *person);
+                       person->cardEntnehmen();

@@ -38,8 +38,16 @@ void Automat::pinEingabeProcess(int versuche, Person &person){
     case 1:
     {
         cout << endl << "Geben Sie Ihr Pin" << endl;
+        cout << "----------------------" << endl;
+        cout << "Write '1' for Abbruch" << endl;
+        cout << "----------------------" << endl;
         int pin;
         cin >> pin;
+        if(pin==1){
+            karteAuswerfen();
+            person.cardEntnehmen();
+            break;
+        }
         while (pin!=person.get_pin() && versuche <2){
             versuche++;
             cout << "----------------------" << endl;
@@ -81,11 +89,22 @@ void Automat::betragAuswahl(Person &person){
     {
         case 1:
         {
+            //////////////////////////////////////////
+            if(geldAnzahl<=0){
+                cout << "Automat hat kein Geld" << endl;
+                break;
+            }
             cout << "Wahlen Sie Ihre Summe" << endl;
             float summe;
             cin >> summe;
+            ////////////////////////////////////////// 
+            if(summe>geldAnzahl){
+                cout << "Automat hat nicht genug Geld" << endl;
+                break;
+            }
             cout << summe << " Euro wird ausgebucht" << endl << endl;
             betragAuszahlen(summe, person);
+            geldAnzahl-=summe;
             break;
         }
         case 2:

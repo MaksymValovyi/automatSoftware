@@ -24,6 +24,11 @@ void Person::cardEntnehmen(){
     cout << "--------------------" << endl;
 }
 
+/**
+ * Adds the specified amount of money to the person's cash balance.
+ *
+ * @param summe The amount of money to be added.
+ */
 void Person::geldErhalten(float summe){
     cash+=summe;
 }

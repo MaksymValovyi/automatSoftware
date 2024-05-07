@@ -19,11 +19,22 @@ int random_number(){
 int main(int argc, char const *argv[])
 {
     Automat automat(Anzahl);
+    /*
     cout << "-----------Admin Message-----------" << endl;
     cout << "Geld in Automat: " << automat.get_geldAnzahl() << endl;
     cout << "---------End Admin Message---------" << endl;
+    */
 
     while (1==1){
+    cout << "-----------Admin Message-----------" << endl;
+    cout << "Geld in Automat: " << automat.get_geldAnzahl() << endl;
+    cout << "---------End Admin Message---------" << endl;
+    //////////////////////////////////////////////
+    if(automat.get_geldAnzahl() == 0){
+        cout << "Automat ist leer" << endl;
+        exit(0);
+        break;
+    }
     cout  << endl << "1. Card Einfuehren" << endl;
     cout << "2. Ruhe" << endl;
     cout << "3. Exit" << endl;
